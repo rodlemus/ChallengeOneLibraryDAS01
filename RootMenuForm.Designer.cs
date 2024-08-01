@@ -65,7 +65,7 @@
             panel1.Controls.Add(button2);
             panel1.Controls.Add(button1);
             panel1.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            panel1.Location = new Point(181, 125);
+            panel1.Location = new Point(176, 125);
             panel1.Name = "panel1";
             panel1.Size = new Size(667, 516);
             panel1.TabIndex = 2;
@@ -87,7 +87,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(993, 753);
+            ClientSize = new Size(982, 753);
             Controls.Add(panel1);
             MinimumSize = new Size(1000, 800);
             Name = "RootMenuForm";
