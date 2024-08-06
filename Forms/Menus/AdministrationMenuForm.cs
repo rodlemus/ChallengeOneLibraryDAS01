@@ -1,4 +1,5 @@
-﻿using ChallengeOneLibraryDAS01.Utils;
+﻿using ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Books;
+using ChallengeOneLibraryDAS01.Utils;
 
 namespace ChallengeOneLibraryDAS01
 {
@@ -7,20 +8,14 @@ namespace ChallengeOneLibraryDAS01
         public AdministrationMenuForm()
         {
             InitializeComponent();
-            this.BackColor = AppPaletteColors.GetPrincipalBackgroundColor();
-            this.panel1.BackColor = AppPaletteColors.GetSecondaryBackgroundColor();
-
-            var buttons = this.panel1.Controls.OfType<Button>().Concat(Controls.OfType<Button>());
-
-            foreach (var item in buttons)
-            {
-                item.ForeColor = AppPaletteColors.GetPrincipalBackgroundColor();
-            }
+            SetAppStyle.SetDefaultWindowsStyle(this, panel1);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            var booksRegistryMenu = new BooksRegistryForm();
+            booksRegistryMenu.Show();
+            this.Hide();
         }
 
         private void button5_Click(object sender, EventArgs e)

@@ -7,13 +7,7 @@ namespace ChallengeOneLibraryDAS01
         public RootMenuForm()
         {
             InitializeComponent();
-            //Form Backgrounds colors
-            this.BackColor = AppPaletteColors.GetPrincipalBackgroundColor();
-            this.panel1.BackColor = AppPaletteColors.GetSecondaryBackgroundColor();
-
-            //Buttons text color
-            this.button1.ForeColor = AppPaletteColors.GetPrincipalBackgroundColor();
-            this.button2.ForeColor = AppPaletteColors.GetPrincipalBackgroundColor();
+            SetAppStyle.SetDefaultWindowsStyle(this, panel1);
         }
 
         private void button1_Click(object sender, EventArgs e)
