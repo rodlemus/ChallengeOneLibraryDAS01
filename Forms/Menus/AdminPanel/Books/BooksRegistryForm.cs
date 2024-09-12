@@ -8,7 +8,8 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Books
         public BooksRegistryForm()
         {
             InitializeComponent();
-            SetAppStyle.SetDefaultWindowsStyle(this, panel1);
+            this.BackColor = AppPaletteColors.GetPrincipalBackgroundColor();
+            this.button2.BackColor = AppPaletteColors.GetPrincipalBackgroundColor();
         }
 
         private void groupBox2_Enter(object sender, EventArgs e)

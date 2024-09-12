@@ -2,24 +2,98 @@
 {
     internal class Book
     {
-        private int id;
-        private string title;
-        private string author;
-        private string portraitUrl;
-        private string editorial;
-        private DateTime datePublished;
-        private short availableItems;
-
-
-        public Book(int id, string title, string author, string portraitUrl, string editorial, DateTime datePublished, short availableItems)
+        private int _id;
+        public int Id
         {
-            this.id = id;
-            this.title = title;
-            this.author = author;
-            this.portraitUrl = portraitUrl;
-            this.editorial = editorial;
-            this.datePublished = datePublished;
-            this.availableItems = availableItems;
+            get => _id;
+            init { _id = Random.Shared.Next(); }
         }
+
+        private string _title;
+        public string Title
+        {
+            get { return _title; }
+
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new Exception("error: Título del libro es requerido.");
+                }
+                _title = value;
+            }
+        }
+
+        private string _author;
+        public string Author
+        {
+            get { return _author; }
+
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new Exception("error:El autor del libro es requerido.");
+                }
+                _author = value;
+            }
+        }
+
+        private string _portraitUrl;
+        public string PortraitUrl
+        {
+            get { return _portraitUrl; }
+
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new Exception("error: La Url de la Portada del libro es requerida.");
+                }
+                _portraitUrl = value;
+            }
+        }
+
+        private string _editorial;
+        public string Editorial
+        {
+            get { return _editorial; }
+
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new Exception("error: El nombre de la Editorial es requerida.");
+                }
+                _editorial = value;
+            }
+        }
+
+        private short _stock;
+        public short Stock
+        {
+            get { return _stock; }
+
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new Exception("error: El stock tiene que ser mayor a Cero.");
+                }
+                _stock = value;
+            }
+        }
+
+        private DateTime _publicationDate;
+        public DateTime PublicationDate
+        {
+            get { return _publicationDate; }
+
+            set
+            {
+                _publicationDate = value;
+            }
+        }
+
     }
 }

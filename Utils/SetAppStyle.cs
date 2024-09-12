@@ -4,8 +4,8 @@
     {
         public static void SetDefaultWindowsStyle(Form form, Panel panel)
         {
-            form.BackColor = AppPaletteColors.GetSecondaryBackgroundColor();
-            panel.BackColor = AppPaletteColors.GetPrincipalBackgroundColor();
+            form.BackColor = AppPaletteColors.GetPrincipalBackgroundColor();
+            panel.BackColor = AppPaletteColors.GetSecondaryAccentBackgroundColor();
         }
     }
 }

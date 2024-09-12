@@ -39,9 +39,9 @@
             // 
             button1.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             button1.ForeColor = SystemColors.ControlText;
-            button1.Location = new Point(190, 170);
+            button1.Location = new Point(68, 86);
             button1.Name = "button1";
-            button1.Size = new Size(286, 80);
+            button1.Size = new Size(227, 61);
             button1.TabIndex = 0;
             button1.Text = "Panel de Administración";
             button1.UseVisualStyleBackColor = true;
@@ -50,9 +50,9 @@
             // button2
             // 
             button2.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            button2.Location = new Point(190, 267);
+            button2.Location = new Point(68, 183);
             button2.Name = "button2";
-            button2.Size = new Size(286, 80);
+            button2.Size = new Size(227, 61);
             button2.TabIndex = 1;
             button2.Text = "Biblioteca Interfaz de Usuario";
             button2.UseVisualStyleBackColor = true;
@@ -65,19 +65,19 @@
             panel1.Controls.Add(button2);
             panel1.Controls.Add(button1);
             panel1.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            panel1.Location = new Point(176, 125);
+            panel1.Location = new Point(12, 19);
             panel1.Name = "panel1";
-            panel1.Size = new Size(667, 516);
+            panel1.Size = new Size(361, 286);
             panel1.TabIndex = 2;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Tahoma", 16.2F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(133, 72);
+            label1.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = Color.Black;
+            label1.Location = new Point(36, 36);
             label1.Name = "label1";
-            label1.Size = new Size(411, 34);
+            label1.Size = new Size(293, 24);
             label1.TabIndex = 2;
             label1.Text = "Biblioteca Centro de Control";
             label1.Click += label1_Click;
@@ -87,9 +87,9 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(982, 753);
+            ClientSize = new Size(390, 319);
             Controls.Add(panel1);
-            MinimumSize = new Size(1000, 800);
+            MinimumSize = new Size(100, 100);
             Name = "RootMenuForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
