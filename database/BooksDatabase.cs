@@ -1,27 +1,46 @@
-﻿using ChallengeOneLibraryDAS01.Models;
+﻿using ChallengeOneLibraryDAS01.database.Models;
+using ChallengeOneLibraryDAS01.database.NewFolder;
 
 namespace ChallengeOneLibraryDAS01.database
 {
     internal class BooksDatabase : IDatabase<Book>
     {
-        IList<Book> IDatabase<Book>.GetAll()
+
+        private IList<Book> _databaseMemory = new List<Book>();
+
+        public IList<Book> GetAll()
         {
-            throw new NotImplementedException();
+            return _databaseMemory;
         }
 
-        Book IDatabase<Book>.getById(int id)
+        public Book GetById(int id)
         {
-            throw new NotImplementedException();
+            return this._databaseMemory.FirstOrDefault(book => book.Id == id) ?? throw new EntityNotFoundException("El libro con ID: " + id + ", no existe.");
         }
 
-        Book IDatabase<Book>.removeById(int id)
+        public Book Insert(Book entity)
         {
-            throw new NotImplementedException();
+            this._databaseMemory.Add(entity);
+            return entity;
         }
 
-        Book IDatabase<Book>.updateById(Book entity)
+        public Book RemoveById(int id)
         {
-            throw new NotImplementedException();
+            Book bookToDelete = this._databaseMemory.FirstOrDefault(book => book.Id == id) ?? throw new EntityNotFoundException("El libro con ID: " + id + ", no existe.");
+
+            this._databaseMemory.Remove(bookToDelete);
+            return bookToDelete;
+        }
+
+        public Book UpdateById(Book entity, int id)
+        {
+            Book target = this._databaseMemory.FirstOrDefault(book => book.Id == id) ?? throw new EntityNotFoundException("El libro con ID: " + id + ", no existe.");
+
+            int index = this._databaseMemory.IndexOf(target);
+
+            this._databaseMemory[index] = entity;
+
+            return entity;
         }
     }
 }

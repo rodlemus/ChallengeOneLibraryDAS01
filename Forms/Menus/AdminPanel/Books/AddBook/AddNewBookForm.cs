@@ -1,4 +1,5 @@
-﻿using ChallengeOneLibraryDAS01.Models;
+﻿using ChallengeOneLibraryDAS01.database;
+using ChallengeOneLibraryDAS01.database.Models;
 using ChallengeOneLibraryDAS01.Utils;
 
 namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Books.AddBook
@@ -7,10 +8,11 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Books.AddBook
     {
         private Book _newBook;
         private Dictionary<string, string> _formErrorsStack = new Dictionary<string, string>();
-        public AddNewBookForm()
+        private IDatabase<Book> _booksDatabase;
+        public AddNewBookForm(IDatabase<Book> database)
         {
             InitializeComponent();
-
+            this._booksDatabase = database;
             _newBook = new Book();
             this.BackColor = AppPaletteColors.GetSecondaryBackgroundColor();
             this.panel1.BackColor = AppPaletteColors.GetSecondaryAccentBackgroundColor();
@@ -19,14 +21,22 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Books.AddBook
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (_formErrorsStack.Count == 0)
+            try
             {
-                MessageBox.Show("Libro Guardado con éxito");
-                DialogResult = DialogResult.OK;
+                if (_formErrorsStack.Count == 0)
+                {
+                    this._newBook.PublicationDate = this.dateTimePicker1.Value;
+                    this._booksDatabase.Insert(this._newBook);
+                    DialogResult = DialogResult.OK;
+                }
+                else
+                {
+                    MessageBox.Show("Falta Validar campos");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Falta Validar campos");
+                MessageBox.Show(ex.Message);
             }
         }
 

@@ -135,15 +135,15 @@
             dateTimePicker1.Location = new Point(175, 243);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(310, 27);
-            dateTimePicker1.TabIndex = 15;
-            dateTimePicker1.Value = new DateTime(2024, 8, 6, 0, 0, 0, 0);
+            dateTimePicker1.TabIndex = 5;
+            dateTimePicker1.Value = new DateTime(2024, 9, 12, 0, 0, 0, 0);
             // 
             // bookUrlTxtBox
             // 
             bookUrlTxtBox.Location = new Point(175, 141);
             bookUrlTxtBox.Name = "bookUrlTxtBox";
             bookUrlTxtBox.Size = new Size(274, 27);
-            bookUrlTxtBox.TabIndex = 14;
+            bookUrlTxtBox.TabIndex = 3;
             bookUrlTxtBox.TextChanged += bookUrlTxtBox_TextChanged;
             bookUrlTxtBox.Validating += handlePortraitUrlValidation;
             // 
@@ -199,7 +199,7 @@
             txtBoxStock.Location = new Point(175, 288);
             txtBoxStock.Name = "txtBoxStock";
             txtBoxStock.Size = new Size(274, 27);
-            txtBoxStock.TabIndex = 9;
+            txtBoxStock.TabIndex = 6;
             txtBoxStock.Validating += handleStockValidation;
             // 
             // label5
@@ -225,7 +225,7 @@
             txtBoxEditorial.Location = new Point(175, 185);
             txtBoxEditorial.Name = "txtBoxEditorial";
             txtBoxEditorial.Size = new Size(274, 27);
-            txtBoxEditorial.TabIndex = 5;
+            txtBoxEditorial.TabIndex = 4;
             txtBoxEditorial.Validating += handleEditorialValidation;
             // 
             // label4
@@ -242,7 +242,7 @@
             bookAutorTxtBox.Location = new Point(175, 87);
             bookAutorTxtBox.Name = "bookAutorTxtBox";
             bookAutorTxtBox.Size = new Size(274, 27);
-            bookAutorTxtBox.TabIndex = 3;
+            bookAutorTxtBox.TabIndex = 2;
             bookAutorTxtBox.Validating += handleAuthorValidation;
             // 
             // label2

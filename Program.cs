@@ -1,3 +1,5 @@
+using ChallengeOneLibraryDAS01.database;
+
 namespace ChallengeOneLibraryDAS01
 {
     internal static class Program
@@ -11,7 +13,7 @@ namespace ChallengeOneLibraryDAS01
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new RootMenuForm());
+            Application.Run(new RootMenuForm(new BooksDatabase()));
         }
     }
 }

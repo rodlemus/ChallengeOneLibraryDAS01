@@ -1,12 +1,14 @@
-﻿namespace ChallengeOneLibraryDAS01.Models
+﻿namespace ChallengeOneLibraryDAS01.database.Models
 {
-    internal class Book
+    public class Book
     {
-        private int _id;
-        public int Id
+
+
+        public int Id { get; }
+
+        public Book()
         {
-            get => _id;
-            init { _id = Random.Shared.Next(); }
+            Id = Random.Shared.Next(1000, 1000001);
         }
 
         private string _title;

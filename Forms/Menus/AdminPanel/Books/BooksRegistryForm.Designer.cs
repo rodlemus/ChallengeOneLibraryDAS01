@@ -28,50 +28,98 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            contextMenuStrip1 = new ContextMenuStrip(components);
             groupBox1 = new GroupBox();
+            label7 = new Label();
+            label6 = new Label();
+            label5 = new Label();
+            label4 = new Label();
+            label3 = new Label();
             pictureBox1 = new PictureBox();
             label2 = new Label();
             label1 = new Label();
             bookEditorialLabel = new Label();
             bookAuthorLabel = new Label();
             bookTitleLabel = new Label();
+            searchResultsListBox = new ListBox();
             button1 = new Button();
             groupBox2 = new GroupBox();
+            groupBox3 = new GroupBox();
+            rdBtnTitle = new RadioButton();
+            rdBtnId = new RadioButton();
             button2 = new Button();
             searchTxtBox = new TextBox();
-            searchResultsListBox = new ListBox();
-            groupBox3 = new GroupBox();
-            radioButton1 = new RadioButton();
-            radioButton2 = new RadioButton();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
             SuspendLayout();
             // 
-            // contextMenuStrip1
-            // 
-            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
-            contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(61, 4);
-            // 
             // groupBox1
             // 
             groupBox1.BackColor = Color.White;
+            groupBox1.Controls.Add(label7);
+            groupBox1.Controls.Add(label6);
+            groupBox1.Controls.Add(label5);
+            groupBox1.Controls.Add(label4);
+            groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(pictureBox1);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(bookEditorialLabel);
             groupBox1.Controls.Add(bookAuthorLabel);
             groupBox1.Controls.Add(bookTitleLabel);
-            groupBox1.Location = new Point(12, 198);
+            groupBox1.Location = new Point(12, 218);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(588, 266);
             groupBox1.TabIndex = 3;
             groupBox1.TabStop = false;
             groupBox1.Text = "Detalles";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(222, 200);
+            label7.Name = "label7";
+            label7.Size = new Size(33, 20);
+            label7.TabIndex = 15;
+            label7.Text = "      ";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(198, 161);
+            label6.Name = "label6";
+            label6.Size = new Size(33, 20);
+            label6.TabIndex = 14;
+            label6.Text = "      ";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(137, 127);
+            label5.Name = "label5";
+            label5.Size = new Size(33, 20);
+            label5.TabIndex = 13;
+            label5.Text = "      ";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(117, 88);
+            label4.Name = "label4";
+            label4.Size = new Size(33, 20);
+            label4.TabIndex = 12;
+            label4.Text = "      ";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            label3.Location = new Point(115, 48);
+            label3.Name = "label3";
+            label3.Size = new Size(33, 20);
+            label3.TabIndex = 11;
+            label3.Text = "      ";
             // 
             // pictureBox1
             // 
@@ -79,6 +127,7 @@
             pictureBox1.Location = new Point(404, 67);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(150, 154);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
             // 
@@ -86,7 +135,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(29, 199);
+            label2.Location = new Point(46, 198);
             label2.Name = "label2";
             label2.Size = new Size(169, 22);
             label2.TabIndex = 10;
@@ -96,7 +145,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(29, 160);
+            label1.Location = new Point(46, 159);
             label1.Name = "label1";
             label1.Size = new Size(146, 22);
             label1.TabIndex = 9;
@@ -106,7 +155,7 @@
             // 
             bookEditorialLabel.AutoSize = true;
             bookEditorialLabel.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            bookEditorialLabel.Location = new Point(29, 126);
+            bookEditorialLabel.Location = new Point(46, 125);
             bookEditorialLabel.Name = "bookEditorialLabel";
             bookEditorialLabel.Size = new Size(85, 22);
             bookEditorialLabel.TabIndex = 8;
@@ -116,7 +165,7 @@
             // 
             bookAuthorLabel.AutoSize = true;
             bookAuthorLabel.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            bookAuthorLabel.Location = new Point(29, 87);
+            bookAuthorLabel.Location = new Point(46, 86);
             bookAuthorLabel.Name = "bookAuthorLabel";
             bookAuthorLabel.Size = new Size(65, 22);
             bookAuthorLabel.TabIndex = 7;
@@ -126,11 +175,22 @@
             // 
             bookTitleLabel.AutoSize = true;
             bookTitleLabel.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            bookTitleLabel.Location = new Point(25, 47);
+            bookTitleLabel.Location = new Point(42, 46);
             bookTitleLabel.Name = "bookTitleLabel";
             bookTitleLabel.Size = new Size(67, 22);
             bookTitleLabel.TabIndex = 6;
             bookTitleLabel.Text = "Título :";
+            // 
+            // searchResultsListBox
+            // 
+            searchResultsListBox.FormattingEnabled = true;
+            searchResultsListBox.ItemHeight = 20;
+            searchResultsListBox.Location = new Point(29, 71);
+            searchResultsListBox.Name = "searchResultsListBox";
+            searchResultsListBox.Size = new Size(379, 104);
+            searchResultsListBox.TabIndex = 5;
+            searchResultsListBox.Visible = false;
+            searchResultsListBox.SelectedIndexChanged += handleSelectedBook;
             // 
             // button1
             // 
@@ -138,7 +198,7 @@
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             button1.ForeColor = Color.Snow;
-            button1.Location = new Point(12, 491);
+            button1.Location = new Point(12, 496);
             button1.Margin = new Padding(0);
             button1.Name = "button1";
             button1.Size = new Size(198, 39);
@@ -156,11 +216,43 @@
             groupBox2.Controls.Add(searchTxtBox);
             groupBox2.Location = new Point(12, 12);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(588, 170);
+            groupBox2.Size = new Size(588, 193);
             groupBox2.TabIndex = 4;
             groupBox2.TabStop = false;
             groupBox2.Text = "Buscador";
-            groupBox2.Enter += groupBox2_Enter;
+            // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(rdBtnTitle);
+            groupBox3.Controls.Add(rdBtnId);
+            groupBox3.Location = new Point(29, 82);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(209, 66);
+            groupBox3.TabIndex = 7;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Opciones de búsqueda";
+            // 
+            // rdBtnTitle
+            // 
+            rdBtnTitle.AutoSize = true;
+            rdBtnTitle.Location = new Point(17, 28);
+            rdBtnTitle.Name = "rdBtnTitle";
+            rdBtnTitle.Size = new Size(68, 24);
+            rdBtnTitle.TabIndex = 1;
+            rdBtnTitle.TabStop = true;
+            rdBtnTitle.Text = "Título";
+            rdBtnTitle.UseVisualStyleBackColor = true;
+            // 
+            // rdBtnId
+            // 
+            rdBtnId.AutoSize = true;
+            rdBtnId.Location = new Point(124, 28);
+            rdBtnId.Name = "rdBtnId";
+            rdBtnId.Size = new Size(45, 24);
+            rdBtnId.TabIndex = 0;
+            rdBtnId.TabStop = true;
+            rdBtnId.Text = "ID";
+            rdBtnId.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
@@ -186,49 +278,8 @@
             searchTxtBox.PlaceholderText = "Buscar";
             searchTxtBox.Size = new Size(379, 27);
             searchTxtBox.TabIndex = 0;
-            // 
-            // searchResultsListBox
-            // 
-            searchResultsListBox.FormattingEnabled = true;
-            searchResultsListBox.ItemHeight = 20;
-            searchResultsListBox.Location = new Point(29, 71);
-            searchResultsListBox.Name = "searchResultsListBox";
-            searchResultsListBox.Size = new Size(379, 104);
-            searchResultsListBox.TabIndex = 5;
-            searchResultsListBox.Visible = false;
-            // 
-            // groupBox3
-            // 
-            groupBox3.Controls.Add(radioButton2);
-            groupBox3.Controls.Add(radioButton1);
-            groupBox3.Location = new Point(29, 82);
-            groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(209, 66);
-            groupBox3.TabIndex = 7;
-            groupBox3.TabStop = false;
-            groupBox3.Text = "Opciones de búsqueda";
-            // 
-            // radioButton1
-            // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(26, 28);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(45, 24);
-            radioButton1.TabIndex = 0;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "ID";
-            radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(101, 28);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(68, 24);
-            radioButton2.TabIndex = 1;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "Título";
-            radioButton2.UseVisualStyleBackColor = true;
+            searchTxtBox.Enter += handleEnterSearchFocus;
+            searchTxtBox.Leave += handleLeaveSearchFocus;
             // 
             // BooksRegistryForm
             // 
@@ -253,7 +304,6 @@
         }
 
         #endregion
-        private ContextMenuStrip contextMenuStrip1;
         private GroupBox groupBox1;
         private Label label2;
         private Label label1;
@@ -267,7 +317,12 @@
         private Button button1;
         private PictureBox pictureBox1;
         private GroupBox groupBox3;
-        private RadioButton radioButton2;
-        private RadioButton radioButton1;
+        private RadioButton rdBtnTitle;
+        private RadioButton rdBtnId;
+        private Label label7;
+        private Label label6;
+        private Label label5;
+        private Label label4;
+        private Label label3;
     }
 }
