@@ -28,7 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BooksRegistryForm));
             groupBox1 = new GroupBox();
+            button9 = new Button();
+            button8 = new Button();
+            button7 = new Button();
+            button6 = new Button();
+            button5 = new Button();
+            button4 = new Button();
+            button3 = new Button();
             label7 = new Label();
             label6 = new Label();
             label5 = new Label();
@@ -57,6 +65,13 @@
             // groupBox1
             // 
             groupBox1.BackColor = Color.White;
+            groupBox1.Controls.Add(button9);
+            groupBox1.Controls.Add(button8);
+            groupBox1.Controls.Add(button7);
+            groupBox1.Controls.Add(button6);
+            groupBox1.Controls.Add(button5);
+            groupBox1.Controls.Add(button4);
+            groupBox1.Controls.Add(button3);
             groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(label5);
@@ -70,10 +85,84 @@
             groupBox1.Controls.Add(bookTitleLabel);
             groupBox1.Location = new Point(12, 218);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(588, 266);
+            groupBox1.Size = new Size(588, 280);
             groupBox1.TabIndex = 3;
             groupBox1.TabStop = false;
             groupBox1.Text = "Detalles";
+            // 
+            // button9
+            // 
+            button9.Image = (Image)resources.GetObject("button9.Image");
+            button9.Location = new Point(517, 33);
+            button9.Name = "button9";
+            button9.Size = new Size(37, 28);
+            button9.TabIndex = 21;
+            button9.UseVisualStyleBackColor = true;
+            button9.Click += handleUpdatePortraitUrlEvent;
+            // 
+            // button8
+            // 
+            button8.Image = (Image)resources.GetObject("button8.Image");
+            button8.Location = new Point(6, 196);
+            button8.Name = "button8";
+            button8.Size = new Size(37, 28);
+            button8.TabIndex = 20;
+            button8.UseVisualStyleBackColor = true;
+            button8.Click += handleUpdateStockEvent;
+            // 
+            // button7
+            // 
+            button7.Image = (Image)resources.GetObject("button7.Image");
+            button7.Location = new Point(6, 157);
+            button7.Name = "button7";
+            button7.Size = new Size(37, 28);
+            button7.TabIndex = 19;
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += handleUpdatePublicationDateEvent;
+            // 
+            // button6
+            // 
+            button6.Image = (Image)resources.GetObject("button6.Image");
+            button6.Location = new Point(6, 116);
+            button6.Name = "button6";
+            button6.Size = new Size(37, 28);
+            button6.TabIndex = 18;
+            button6.UseVisualStyleBackColor = true;
+            button6.Click += handleUpdateEditorialEvent;
+            // 
+            // button5
+            // 
+            button5.Image = (Image)resources.GetObject("button5.Image");
+            button5.Location = new Point(6, 82);
+            button5.Name = "button5";
+            button5.Size = new Size(37, 28);
+            button5.TabIndex = 17;
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += handleUpdateAuthorEvent;
+            // 
+            // button4
+            // 
+            button4.Image = (Image)resources.GetObject("button4.Image");
+            button4.Location = new Point(6, 44);
+            button4.Name = "button4";
+            button4.Size = new Size(37, 28);
+            button4.TabIndex = 16;
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += handleUpdateTitleEvent;
+            // 
+            // button3
+            // 
+            button3.BackColor = Color.Crimson;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.Font = new Font("Tahoma", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            button3.ForeColor = Color.Snow;
+            button3.Location = new Point(404, 225);
+            button3.Margin = new Padding(0);
+            button3.Name = "button3";
+            button3.Size = new Size(150, 41);
+            button3.TabIndex = 5;
+            button3.Text = "Eliminar";
+            button3.UseVisualStyleBackColor = false;
             // 
             // label7
             // 
@@ -145,7 +234,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(46, 159);
+            label1.Location = new Point(46, 160);
             label1.Name = "label1";
             label1.Size = new Size(146, 22);
             label1.TabIndex = 9;
@@ -155,7 +244,7 @@
             // 
             bookEditorialLabel.AutoSize = true;
             bookEditorialLabel.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            bookEditorialLabel.Location = new Point(46, 125);
+            bookEditorialLabel.Location = new Point(46, 122);
             bookEditorialLabel.Name = "bookEditorialLabel";
             bookEditorialLabel.Size = new Size(85, 22);
             bookEditorialLabel.TabIndex = 8;
@@ -165,7 +254,7 @@
             // 
             bookAuthorLabel.AutoSize = true;
             bookAuthorLabel.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            bookAuthorLabel.Location = new Point(46, 86);
+            bookAuthorLabel.Location = new Point(46, 84);
             bookAuthorLabel.Name = "bookAuthorLabel";
             bookAuthorLabel.Size = new Size(65, 22);
             bookAuthorLabel.TabIndex = 7;
@@ -183,11 +272,12 @@
             // 
             // searchResultsListBox
             // 
+            searchResultsListBox.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             searchResultsListBox.FormattingEnabled = true;
-            searchResultsListBox.ItemHeight = 20;
+            searchResultsListBox.ItemHeight = 23;
             searchResultsListBox.Location = new Point(29, 71);
             searchResultsListBox.Name = "searchResultsListBox";
-            searchResultsListBox.Size = new Size(379, 104);
+            searchResultsListBox.Size = new Size(379, 96);
             searchResultsListBox.TabIndex = 5;
             searchResultsListBox.Visible = false;
             searchResultsListBox.SelectedIndexChanged += handleSelectedBook;
@@ -198,7 +288,7 @@
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             button1.ForeColor = Color.Snow;
-            button1.Location = new Point(12, 496);
+            button1.Location = new Point(18, 532);
             button1.Margin = new Padding(0);
             button1.Name = "button1";
             button1.Size = new Size(198, 39);
@@ -279,13 +369,12 @@
             searchTxtBox.Size = new Size(379, 27);
             searchTxtBox.TabIndex = 0;
             searchTxtBox.Enter += handleEnterSearchFocus;
-            searchTxtBox.Leave += handleLeaveSearchFocus;
             // 
             // BooksRegistryForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(617, 544);
+            ClientSize = new Size(617, 580);
             Controls.Add(button1);
             Controls.Add(groupBox1);
             Controls.Add(groupBox2);
@@ -324,5 +413,12 @@
         private Label label5;
         private Label label4;
         private Label label3;
+        private Button button3;
+        private Button button4;
+        private Button button8;
+        private Button button7;
+        private Button button6;
+        private Button button5;
+        private Button button9;
     }
 }

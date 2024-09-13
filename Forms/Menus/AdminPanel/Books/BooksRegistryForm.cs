@@ -1,6 +1,7 @@
 ﻿using ChallengeOneLibraryDAS01.database;
 using ChallengeOneLibraryDAS01.database.Models;
 using ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Books.AddBook;
+using ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Books.UpdateBook;
 using ChallengeOneLibraryDAS01.Utils;
 
 namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Books
@@ -11,6 +12,7 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Books
 
         // guardamos lo resultados de la busqueda, nos serviran para buscar por el index el libro clickeado
         private IList<Book> _booksInMemory = new List<Book>();
+        private Book _selectedBookFromListBox;
         public BooksRegistryForm(IDatabase<Book> database)
         {
             InitializeComponent();
@@ -30,6 +32,8 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Books
             if (!isTextToSearch)
             {
                 MessageBox.Show("Tiene que ingresar texto en el campo de busqueda.");
+                this.searchResultsListBox.Visible = false;
+                this.searchResultsListBox.Items.Clear();
             }
             else
             {
@@ -89,11 +93,7 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Books
             }
         }
 
-        private void handleLeaveSearchFocus(object sender, EventArgs e)
-        {
-
-        }
-
+        // despliega el listbox si vuelve el focus y si el listbox tiene items
         private void handleEnterSearchFocus(object sender, EventArgs e)
         {
             if (this.searchResultsListBox.Items.Count > 0)
@@ -102,25 +102,74 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Books
             }
         }
 
-        //le asignamos el evento al listbox para cuando clickamos un item
+        //Cuando clickea un item del listbox lo buscamos por index en la varible de los booksInMemory
+        //lo obetemos por indice y le asignamos las propiedades a los label
         private void handleSelectedBook(object sender, EventArgs e)
         {
             if (this.searchResultsListBox.SelectedIndex >= 0)
             {
                 this.searchResultsListBox.Visible = false;
-                Book selectedBook = this._booksInMemory[searchResultsListBox.SelectedIndex];
-                label3.Text = selectedBook.Title;
-                label4.Text = selectedBook.Author;
-                label5.Text = selectedBook.Editorial;
-                label6.Text = selectedBook.PublicationDate.ToShortDateString();
-                label7.Text = selectedBook.Stock.ToString();
-                pictureBox1.ImageLocation = selectedBook.PortraitUrl;
+                this._selectedBookFromListBox = this._booksInMemory[searchResultsListBox.SelectedIndex];
+                label3.Text = this._selectedBookFromListBox.Title;
+                label4.Text = this._selectedBookFromListBox.Author;
+                label5.Text = this._selectedBookFromListBox.Editorial;
+                label6.Text = this._selectedBookFromListBox.PublicationDate.ToShortDateString();
+                label7.Text = this._selectedBookFromListBox.Stock.ToString();
+                pictureBox1.ImageLocation = this._selectedBookFromListBox.PortraitUrl;
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        // Encapsulamos la logica para reutilizarla en las diferentes propiedadas ya que lo unico que varía es la propiedad del libro a actualizar
+        private void updateBookProperty(string propertyToUpdate)
         {
+            using (UpdateBookPropertiesDialog updateBookProperty = new UpdateBookPropertiesDialog(this._booksDatabase, propertyToUpdate, ref this._selectedBookFromListBox))
+            {
+                updateBookProperty.ShowDialog();
+                if (updateBookProperty.DialogResult == DialogResult.OK)
+                {
+                    MessageBox.Show("Libro actualizado con éxito!.");
 
+                    //despues actualizar sastifacotiramente el campo prodecemos a actualizar los labels y los items del form padre
+
+                    label3.Text = this._selectedBookFromListBox.Title;
+                    label4.Text = this._selectedBookFromListBox.Author;
+                    label5.Text = this._selectedBookFromListBox.Editorial;
+                    label6.Text = this._selectedBookFromListBox.PublicationDate.ToShortDateString();
+                    label7.Text = this._selectedBookFromListBox.Stock.ToString();
+                    pictureBox1.ImageLocation = this._selectedBookFromListBox.PortraitUrl;
+
+                    this.searchResultsListBox.Items.Clear();
+                }
+            }
+        }
+        private void handleUpdateTitleEvent(object sender, EventArgs e)
+        {
+            this.updateBookProperty("title");
+        }
+
+        private void handleUpdateAuthorEvent(object sender, EventArgs e)
+        {
+            this.updateBookProperty("author");
+        }
+
+        private void handleUpdateEditorialEvent(object sender, EventArgs e)
+        {
+            this.updateBookProperty("editorial");
+        }
+
+        private void handleUpdatePublicationDateEvent(object sender, EventArgs e)
+        {
+            this.updateBookProperty("date");
+        }
+
+        private void handleUpdateStockEvent(object sender, EventArgs e)
+        {
+            this.updateBookProperty("stock");
+        }
+
+        private void handleUpdatePortraitUrlEvent(object sender, EventArgs e)
+        {
+            this.updateBookProperty("url");
         }
     }
 }
