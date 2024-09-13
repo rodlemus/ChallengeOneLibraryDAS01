@@ -12,7 +12,7 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Books
 
         // guardamos lo resultados de la busqueda, nos serviran para buscar por el index el libro clickeado
         private IList<Book> _booksInMemory = new List<Book>();
-        private Book _selectedBookFromListBox;
+        private Book? _selectedBookFromListBox;
         public BooksRegistryForm(IDatabase<Book> database)
         {
             InitializeComponent();
@@ -170,6 +170,47 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Books
         private void handleUpdatePortraitUrlEvent(object sender, EventArgs e)
         {
             this.updateBookProperty("url");
+        }
+
+        private void handleDeleteBookEvent(object sender, EventArgs e)
+        {
+            try
+            {
+                //validamos que haya un libro seleccionado
+                if (this._selectedBookFromListBox != null)
+                {
+                    using (ConfirmDialog confirmDialog = new ConfirmDialog())
+                    {
+                        confirmDialog.ShowDialog();
+                        //Le pedimos una confirmacion al usuario para descartar que haya presionado eliminar por error
+                        if (confirmDialog.DialogResult == DialogResult.OK)
+                        {
+                            this._booksDatabase.RemoveById(this._selectedBookFromListBox.Id);
+                            this.searchResultsListBox.Items.Clear();
+                            label3.Text = "";
+                            label4.Text = "";
+                            label5.Text = "";
+                            label6.Text = "";
+                            label7.Text = "";
+                            pictureBox1.ImageLocation = "";
+
+                            this._selectedBookFromListBox = null;
+                            MessageBox.Show("Libro borrado con éxito");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Proceso cancelado.");
+                        }
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrio un error, intentelo más tarde.");
+            }
+
         }
     }
 }

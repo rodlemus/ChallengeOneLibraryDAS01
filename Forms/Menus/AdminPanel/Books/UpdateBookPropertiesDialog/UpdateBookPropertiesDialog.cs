@@ -63,7 +63,8 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Books.UpdateBook
                     break;
                 case "stock":
                     this.label1.Text = "# Stock:";
-                    this.textBox1.Text = this._book.Stock.ToString();
+                    this.textBox1.Text = this._book.Stock.ToString()
+                        ;
                     break;
             }
         }
