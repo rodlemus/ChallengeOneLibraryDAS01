@@ -116,6 +116,11 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Books
                 label6.Text = this._selectedBookFromListBox.PublicationDate.ToShortDateString();
                 label7.Text = this._selectedBookFromListBox.Stock.ToString();
                 pictureBox1.ImageLocation = this._selectedBookFromListBox.PortraitUrl;
+
+                //Elementos para editar y elimar libro
+                panel1.Visible = true;
+                button9.Visible = true;
+                button3.Visible = true;
             }
         }
 
@@ -195,6 +200,11 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Books
                             pictureBox1.ImageLocation = "";
 
                             this._selectedBookFromListBox = null;
+
+                            panel1.Visible = false;
+                            button9.Visible = false;
+                            button3.Visible = false;
+
                             MessageBox.Show("Libro borrado con éxito");
                         }
                         else

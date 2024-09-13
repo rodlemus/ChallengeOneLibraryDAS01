@@ -56,21 +56,19 @@
             rdBtnId = new RadioButton();
             button2 = new Button();
             searchTxtBox = new TextBox();
+            panel1 = new Panel();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox1
             // 
             groupBox1.BackColor = Color.White;
+            groupBox1.Controls.Add(panel1);
             groupBox1.Controls.Add(button9);
-            groupBox1.Controls.Add(button8);
-            groupBox1.Controls.Add(button7);
-            groupBox1.Controls.Add(button6);
-            groupBox1.Controls.Add(button5);
-            groupBox1.Controls.Add(button4);
             groupBox1.Controls.Add(button3);
             groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(label6);
@@ -98,12 +96,13 @@
             button9.Size = new Size(37, 28);
             button9.TabIndex = 21;
             button9.UseVisualStyleBackColor = true;
+            button9.Visible = false;
             button9.Click += handleUpdatePortraitUrlEvent;
             // 
             // button8
             // 
             button8.Image = (Image)resources.GetObject("button8.Image");
-            button8.Location = new Point(6, 196);
+            button8.Location = new Point(2, 154);
             button8.Name = "button8";
             button8.Size = new Size(37, 28);
             button8.TabIndex = 20;
@@ -113,7 +112,7 @@
             // button7
             // 
             button7.Image = (Image)resources.GetObject("button7.Image");
-            button7.Location = new Point(6, 157);
+            button7.Location = new Point(2, 118);
             button7.Name = "button7";
             button7.Size = new Size(37, 28);
             button7.TabIndex = 19;
@@ -123,7 +122,7 @@
             // button6
             // 
             button6.Image = (Image)resources.GetObject("button6.Image");
-            button6.Location = new Point(6, 116);
+            button6.Location = new Point(2, 82);
             button6.Name = "button6";
             button6.Size = new Size(37, 28);
             button6.TabIndex = 18;
@@ -133,7 +132,7 @@
             // button5
             // 
             button5.Image = (Image)resources.GetObject("button5.Image");
-            button5.Location = new Point(6, 82);
+            button5.Location = new Point(2, 46);
             button5.Name = "button5";
             button5.Size = new Size(37, 28);
             button5.TabIndex = 17;
@@ -143,7 +142,7 @@
             // button4
             // 
             button4.Image = (Image)resources.GetObject("button4.Image");
-            button4.Location = new Point(6, 44);
+            button4.Location = new Point(5, 10);
             button4.Name = "button4";
             button4.Size = new Size(37, 28);
             button4.TabIndex = 16;
@@ -163,12 +162,13 @@
             button3.TabIndex = 5;
             button3.Text = "Eliminar";
             button3.UseVisualStyleBackColor = false;
+            button3.Visible = false;
             button3.Click += handleDeleteBookEvent;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(222, 200);
+            label7.Location = new Point(232, 201);
             label7.Name = "label7";
             label7.Size = new Size(33, 20);
             label7.TabIndex = 15;
@@ -177,7 +177,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(198, 161);
+            label6.Location = new Point(208, 162);
             label6.Name = "label6";
             label6.Size = new Size(33, 20);
             label6.TabIndex = 14;
@@ -186,7 +186,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(137, 127);
+            label5.Location = new Point(147, 128);
             label5.Name = "label5";
             label5.Size = new Size(33, 20);
             label5.TabIndex = 13;
@@ -195,7 +195,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(117, 88);
+            label4.Location = new Point(127, 89);
             label4.Name = "label4";
             label4.Size = new Size(33, 20);
             label4.TabIndex = 12;
@@ -205,7 +205,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            label3.Location = new Point(115, 48);
+            label3.Location = new Point(125, 49);
             label3.Name = "label3";
             label3.Size = new Size(33, 20);
             label3.TabIndex = 11;
@@ -225,7 +225,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(46, 198);
+            label2.Location = new Point(56, 199);
             label2.Name = "label2";
             label2.Size = new Size(169, 22);
             label2.TabIndex = 10;
@@ -235,7 +235,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(46, 160);
+            label1.Location = new Point(56, 161);
             label1.Name = "label1";
             label1.Size = new Size(146, 22);
             label1.TabIndex = 9;
@@ -245,7 +245,7 @@
             // 
             bookEditorialLabel.AutoSize = true;
             bookEditorialLabel.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            bookEditorialLabel.Location = new Point(46, 122);
+            bookEditorialLabel.Location = new Point(56, 123);
             bookEditorialLabel.Name = "bookEditorialLabel";
             bookEditorialLabel.Size = new Size(85, 22);
             bookEditorialLabel.TabIndex = 8;
@@ -255,7 +255,7 @@
             // 
             bookAuthorLabel.AutoSize = true;
             bookAuthorLabel.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            bookAuthorLabel.Location = new Point(46, 84);
+            bookAuthorLabel.Location = new Point(56, 85);
             bookAuthorLabel.Name = "bookAuthorLabel";
             bookAuthorLabel.Size = new Size(65, 22);
             bookAuthorLabel.TabIndex = 7;
@@ -265,7 +265,7 @@
             // 
             bookTitleLabel.AutoSize = true;
             bookTitleLabel.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            bookTitleLabel.Location = new Point(42, 46);
+            bookTitleLabel.Location = new Point(52, 47);
             bookTitleLabel.Name = "bookTitleLabel";
             bookTitleLabel.Size = new Size(67, 22);
             bookTitleLabel.TabIndex = 6;
@@ -371,6 +371,19 @@
             searchTxtBox.TabIndex = 0;
             searchTxtBox.Enter += handleEnterSearchFocus;
             // 
+            // panel1
+            // 
+            panel1.Controls.Add(button8);
+            panel1.Controls.Add(button4);
+            panel1.Controls.Add(button5);
+            panel1.Controls.Add(button7);
+            panel1.Controls.Add(button6);
+            panel1.Location = new Point(6, 38);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(44, 183);
+            panel1.TabIndex = 22;
+            panel1.Visible = false;
+            // 
             // BooksRegistryForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -390,6 +403,7 @@
             groupBox2.PerformLayout();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -421,5 +435,6 @@
         private Button button6;
         private Button button5;
         private Button button9;
+        private Panel panel1;
     }
 }
