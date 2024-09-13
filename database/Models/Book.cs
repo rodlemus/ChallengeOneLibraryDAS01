@@ -2,12 +2,8 @@
 {
     public class Book : DatabaseElement
     {
-
-
-
-        public Book()
+        public Book() : base()
         {
-            Id = Random.Shared.Next(1000, 1000001);
         }
 
         private string _title;

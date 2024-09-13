@@ -2,18 +2,8 @@
 {
     public class Student : DatabaseElement
     {
-        private string _carnet;
-        public string Carnet
+        public Student() : base()
         {
-            get => _carnet;
-            set
-            {
-                if (string.IsNullOrEmpty(value))
-                {
-                    throw new Exception("error: Carnet es requerido.");
-                }
-                _carnet = value;
-            }
         }
 
         private string _name;
@@ -30,10 +20,5 @@
             }
         }
 
-        public Student(string carnet, string name)
-        {
-            Carnet = carnet;
-            Name = name;
-        }
     }
 }
