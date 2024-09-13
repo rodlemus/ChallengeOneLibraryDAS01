@@ -3,38 +3,39 @@ using ChallengeOneLibraryDAS01.database.NewFolder;
 
 namespace ChallengeOneLibraryDAS01.database
 {
-    internal class BooksDatabase : IDatabase<Book>
+
+    public class BiblioRepository<T> : IDatabase<T> where T : DatabaseElement
     {
 
-        private IList<Book> _databaseMemory = new List<Book>();
+        private IList<T> _databaseMemory = new List<T>();
 
-        public IList<Book> GetAll()
+        public IList<T> GetAll()
         {
             return _databaseMemory;
         }
 
-        public Book GetById(int id)
+        public T GetById(int id)
         {
-            return this._databaseMemory.FirstOrDefault(book => book.Id == id) ?? throw new EntityNotFoundException("El libro con ID: " + id + ", no existe.");
+            return this._databaseMemory.FirstOrDefault(element => element.Id == id) ?? throw new EntityNotFoundException("El elemento con ID: " + id + ", no existe.");
         }
 
-        public Book Insert(Book entity)
+        public T Insert(T entity)
         {
             this._databaseMemory.Add(entity);
             return entity;
         }
 
-        public Book RemoveById(int id)
+        public T RemoveById(int id)
         {
-            Book bookToDelete = this._databaseMemory.FirstOrDefault(book => book.Id == id) ?? throw new EntityNotFoundException("El libro con ID: " + id + ", no existe.");
+            T elementToDelete = this._databaseMemory.FirstOrDefault(element => element.Id == id) ?? throw new EntityNotFoundException("El elemento con ID: " + id + ", no existe.");
 
-            this._databaseMemory.Remove(bookToDelete);
-            return bookToDelete;
+            this._databaseMemory.Remove(elementToDelete);
+            return elementToDelete;
         }
 
-        public Book UpdateById(Book entity, int id)
+        public T UpdateById(T entity, int id)
         {
-            Book target = this._databaseMemory.FirstOrDefault(book => book.Id == id) ?? throw new EntityNotFoundException("El libro con ID: " + id + ", no existe.");
+            T target = this._databaseMemory.FirstOrDefault(element => element.Id == id) ?? throw new EntityNotFoundException("El elemento con ID: " + id + ", no existe.");
 
             int index = this._databaseMemory.IndexOf(target);
 

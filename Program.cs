@@ -1,4 +1,5 @@
 using ChallengeOneLibraryDAS01.database;
+using ChallengeOneLibraryDAS01.database.Models;
 
 namespace ChallengeOneLibraryDAS01
 {
@@ -13,7 +14,7 @@ namespace ChallengeOneLibraryDAS01
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new RootMenuForm(new BooksDatabase()));
+            Application.Run(new RootMenuForm(new BiblioRepository<Book>()));
         }
     }
 }

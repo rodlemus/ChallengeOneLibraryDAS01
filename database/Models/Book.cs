@@ -1,10 +1,9 @@
 ﻿namespace ChallengeOneLibraryDAS01.database.Models
 {
-    public class Book
+    public class Book : DatabaseElement
     {
 
 
-        public int Id { get; }
 
         public Book()
         {
