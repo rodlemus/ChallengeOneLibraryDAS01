@@ -30,7 +30,6 @@
         {
             button1 = new Button();
             button2 = new Button();
-            button3 = new Button();
             button4 = new Button();
             panel1 = new Panel();
             label1 = new Label();
@@ -55,29 +54,20 @@
             button2.Name = "button2";
             button2.Size = new Size(220, 41);
             button2.TabIndex = 1;
-            button2.Text = "Gestión de usuarios";
+            button2.Text = "Panel de Administración";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
-            // 
-            // button3
-            // 
-            button3.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            button3.Location = new Point(54, 194);
-            button3.Name = "button3";
-            button3.Size = new Size(220, 41);
-            button3.TabIndex = 2;
-            button3.Text = "Prestamos registro";
-            button3.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
             button4.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            button4.Location = new Point(54, 254);
+            button4.Location = new Point(54, 198);
             button4.Name = "button4";
             button4.Size = new Size(220, 41);
             button4.TabIndex = 3;
             button4.Text = "Reportes";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // panel1
             // 
@@ -86,10 +76,9 @@
             panel1.Controls.Add(button4);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(button2);
-            panel1.Controls.Add(button3);
-            panel1.Location = new Point(21, 13);
+            panel1.Location = new Point(21, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(325, 333);
+            panel1.Size = new Size(325, 269);
             panel1.TabIndex = 5;
             // 
             // label1
@@ -97,17 +86,17 @@
             label1.AutoSize = true;
             label1.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(37, 31);
+            label1.Location = new Point(70, 31);
             label1.Name = "label1";
-            label1.Size = new Size(255, 24);
+            label1.Size = new Size(185, 24);
             label1.TabIndex = 4;
-            label1.Text = "Panel de Administración";
+            label1.Text = "Aurora Biblioteca";
             // 
             // AdministrationMenuForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(366, 358);
+            ClientSize = new Size(366, 293);
             Controls.Add(panel1);
             MaximizeBox = false;
             MinimumSize = new Size(100, 100);
@@ -122,7 +111,6 @@
 
         private Button button1;
         private Button button2;
-        private Button button3;
         private Button button4;
         private Panel panel1;
         private Label label1;
