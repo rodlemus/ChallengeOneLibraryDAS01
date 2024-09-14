@@ -85,14 +85,20 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.Reports
 
         private void generateBooksLoansByUser()
         {
+            //Nombre clave de la serie
             string booksPerAuthorSeries = "Préstamos por usuario";
 
             var booksPerYear = this._graphQueryService.GetNumberOfLoanPerUser();
 
             this.chart3.Series.Clear();
+
+            //titulo del chart
             this.chart3.Titles.Add("Número de préstamos por usuario");
             this.chart3.Series.Add(booksPerAuthorSeries);
+
+            //Para una mejor descripccion le agregamos un titulo a la Axis X ya que solo los ids de los usuario no se puede llegar a comprender
             this.chart3.ChartAreas[0].AxisX.Title = "Usuarios ID's";
+
             foreach (var item in booksPerYear.Select((value, index) => new { value, index }))
             {
                 var book = item.value;
@@ -109,7 +115,7 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.Reports
             }
         }
 
-        //Encapsulamos la logica para genera la data que alimentara las charts
+        //Encapsulamos la logica para generar la información que alimentara las charts
         private class GraphsQuerieService
         {
 
@@ -131,7 +137,11 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.Reports
                 return this._bookDatabase.GetAll().GroupBy(book => book.Author).Select(authors =>
                 {
                     var bookPerAuthor = new BookPerRequirement();
+
+                    //le asgignamos el nombre del autor
                     bookPerAuthor.Requirement = authors.Key;
+
+                    // le asignamos la suma de los libro por author
                     bookPerAuthor.BooksStockNumber = authors.Sum(book => book.Stock);
 
                     return bookPerAuthor;
@@ -145,7 +155,10 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.Reports
                 return this._bookDatabase.GetAll().GroupBy(book => book.PublicationDate.Year).Select(authors =>
                 {
                     var bookPerAuthor = new BookPerRequirement();
+
+                    //Le asignamos el año de publicacion
                     bookPerAuthor.Requirement = authors.Key.ToString();
+                    // le asiganmos la suma de los libro de ese año
                     bookPerAuthor.BooksStockNumber = authors.Sum(book => book.Stock);
 
                     return bookPerAuthor;
@@ -159,7 +172,9 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.Reports
                 return this._bookLoanDatabase.GetAll().GroupBy(loan => loan.User.Id).Select(authors =>
                 {
                     var bookPerAuthor = new BookPerRequirement();
+                    //le asignamos el ID del usario
                     bookPerAuthor.Requirement = authors.Key.ToString();
+                    //le asignamos la cuenta de los prestamos
                     bookPerAuthor.BooksStockNumber = authors.Count();
 
                     return bookPerAuthor;
