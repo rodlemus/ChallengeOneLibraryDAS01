@@ -1,5 +1,6 @@
 ﻿using ChallengeOneLibraryDAS01.database;
 using ChallengeOneLibraryDAS01.database.Models;
+using ChallengeOneLibraryDAS01.Utils;
 
 namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Users
 {
@@ -23,6 +24,9 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Users
             this._booksLoanDatabase = booksLoanDatabase;
             this._defaultId = defaultId;
             this.textBox2.Text = this._defaultId;
+
+            this.BackColor = AppPaletteColors.GetPrincipalBackgroundColor();
+            this.panel1.BackColor = AppPaletteColors.GetSecondaryAccentBackgroundColor();
         }
 
         private void handleLoanRegistrationEvent(object sender, EventArgs e)
