@@ -85,6 +85,13 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Users
                 {
                     MessageBox.Show("Lo sentimos, no contamos con existencias por el momento, vuelva otro día.");
                 }
+
+                if (addNewBookLoanDialog.DialogResult == DialogResult.Ignore)
+                {
+                    MessageBox.Show("Lo sentimos, ya cuenta con una copia de este libro, solo puede prestar una.");
+                }
+
+
             }
 
         }

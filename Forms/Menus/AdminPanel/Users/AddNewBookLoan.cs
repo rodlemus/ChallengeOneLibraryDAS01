@@ -53,6 +53,12 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Users
                 return;
             }
 
+            bool alreadyHadBookCopy = this.checkIfUserAlreadyHadBookCopy(book, user);
+            if (alreadyHadBookCopy)
+            {
+                DialogResult = DialogResult.Ignore;
+                return;
+            }
 
             this._userProceded = user;
             BookLoan newBookLoan = new BookLoan();
@@ -76,6 +82,12 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Users
             book.Stock = book.Stock - 1;
             this._booksDatabase.UpdateById(book, book.Id);
             return true;
+        }
+
+        //Verificamos si un usuario ya cuenta con una copia del mismo libro para evitar que solamente una persona pueda acaparar todo un stock
+        private bool checkIfUserAlreadyHadBookCopy(Book book, User user)
+        {
+            return this._booksLoanDatabase.GetAll().Where(loan => loan.BookInLoan.Id == book.Id && loan.User.Id == user.Id && loan.IsPendingLoan).ToList().Count > 0;
         }
 
         private void button2_Click(object sender, EventArgs e)
