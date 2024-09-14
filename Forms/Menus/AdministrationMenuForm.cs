@@ -39,7 +39,7 @@ namespace ChallengeOneLibraryDAS01
 
         private void button4_Click(object sender, EventArgs e)
         {
-            var reportsCharts = new ReportsChartForm(this._bookDatabase, this._bookLoanDatabase, this._usersDatabase);
+            var reportsCharts = new ReportsChartForm(this._bookDatabase, this._bookLoanDatabase, this._usersDatabase, this);
             reportsCharts.Show();
             this.Hide();
         }

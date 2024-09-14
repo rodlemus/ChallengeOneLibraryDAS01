@@ -22,6 +22,7 @@ namespace ChallengeOneLibraryDAS01
             var book3 = new Book();
             var book4 = new Book();
             var user = new User();
+            var user2 = new User();
 
             book.Id = 1000;
             book.Title = "el principito";
@@ -60,7 +61,11 @@ namespace ChallengeOneLibraryDAS01
             user.Id = 1001;
             user.Name = "rodrigo lemus";
 
+            user2.Id = 1010;
+            user2.Name = "eduardo lemus";
+
             userdb.Insert(user);
+            userdb.Insert(user2);
 
             bookdb.Insert(book);
             bookdb.Insert(book2);

@@ -11,9 +11,11 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.Reports
         private IDatabase<BookLoan> _bookLoanDatabase;
         private IDatabase<User> _studentDatabase;
 
+        private Form _prevForm;
+
         private GraphsQuerieService _graphQueryService;
 
-        public ReportsChartForm(IDatabase<Book> bookDatabase, IDatabase<BookLoan> bookLoanDatabase, IDatabase<User> studentDatabase)
+        public ReportsChartForm(IDatabase<Book> bookDatabase, IDatabase<BookLoan> bookLoanDatabase, IDatabase<User> studentDatabase, Form prevForm)
         {
             InitializeComponent();
 
@@ -23,7 +25,11 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.Reports
             this.BackColor = AppPaletteColors.GetPrincipalBackgroundColor();
             this.panel1.BackColor = AppPaletteColors.GetSecondaryAccentBackgroundColor();
             this._graphQueryService = new GraphsQuerieService(bookDatabase, bookLoanDatabase, studentDatabase);
+            this._prevForm = prevForm;
+
             this.generateBooksPerAuthorGraph();
+            this.generateBooksByYearPublicationGraph();
+            this.generateBooksLoansByUser();
         }
 
         //Este metood construye la grafica, setea el titulo limpia las series agredas por default por el autor
@@ -43,11 +49,63 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.Reports
                 //DataPoint representa a cada barra de la grafica, le asignamos los valor como el indice y el Valor de Y
                 var charDataPoint = new DataPoint();
                 charDataPoint.SetValueXY(count + 1, book.BooksStockNumber);
-                charDataPoint.AxisLabel = book.Author;
+                charDataPoint.AxisLabel = book.Requirement;
 
                 //luego agregamos ese punto a la serie correspondiente
                 this.chart1.Series[booksPerAuthorSeries].Points.Add(charDataPoint);
                 count += 1;
+            }
+        }
+
+        private void generateBooksByYearPublicationGraph()
+        {
+            string booksPerAuthorSeries = "Año de Publicación";
+
+            var booksPerYear = this._graphQueryService.GetBooksPerYearPublication();
+
+            this.chart2.Series.Clear();
+            this.chart2.Titles.Add("Número de libros por Año de Publicación");
+            this.chart2.Series.Add(booksPerAuthorSeries);
+
+
+            foreach (var item in booksPerYear.Select((value, index) => new { value, index }))
+            {
+                var book = item.value;
+                var index = item.index;
+
+                //DataPoint representa a cada barra de la grafica, le asignamos los valor como el indice y el Valor de Y
+                var charDataPoint = new DataPoint();
+                charDataPoint.SetValueXY(index, book.BooksStockNumber);
+                charDataPoint.AxisLabel = book.Requirement;
+
+                //luego agregamos ese punto a la serie correspondiente
+                this.chart2.Series[booksPerAuthorSeries].Points.Add(charDataPoint);
+            }
+        }
+
+        private void generateBooksLoansByUser()
+        {
+            string booksPerAuthorSeries = "Préstamos por usuario";
+
+            var booksPerYear = this._graphQueryService.GetNumberOfLoanPerUser();
+
+            this.chart3.Series.Clear();
+            this.chart3.Titles.Add("Número de préstamos por usuario");
+            this.chart3.Series.Add(booksPerAuthorSeries);
+            this.chart3.ChartAreas[0].AxisX.Title = "Usuarios ID's";
+            foreach (var item in booksPerYear.Select((value, index) => new { value, index }))
+            {
+                var book = item.value;
+                var index = item.index;
+
+                //DataPoint representa a cada barra de la grafica, le asignamos los valor como el indice y el Valor de Y
+                var charDataPoint = new DataPoint();
+
+                charDataPoint.SetValueXY(index, book.BooksStockNumber);
+                charDataPoint.AxisLabel = book.Requirement;
+
+                //luego agregamos ese punto a la serie correspondiente
+                this.chart3.Series[booksPerAuthorSeries].Points.Add(charDataPoint);
             }
         }
 
@@ -66,30 +124,60 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.Reports
                 _studentDatabase = studentDatabase;
             }
 
-            public IList<BookPerAuthor> GetBooksPerAuthor()
+            public IList<BookPerRequirement> GetBooksPerAuthor()
             {
 
                 //agrupamos los libros por author, luego mapeamos los valores y hacemos la suma del stock de cada sub coleccion
                 return this._bookDatabase.GetAll().GroupBy(book => book.Author).Select(authors =>
                 {
-                    var bookPerAuthor = new BookPerAuthor();
-                    bookPerAuthor.Author = authors.Key;
+                    var bookPerAuthor = new BookPerRequirement();
+                    bookPerAuthor.Requirement = authors.Key;
                     bookPerAuthor.BooksStockNumber = authors.Sum(book => book.Stock);
+
+                    return bookPerAuthor;
+                }).ToList();
+            }
+
+            public IList<BookPerRequirement> GetBooksPerYearPublication()
+            {
+
+                //agrupamos los libros por Año de publicación, luego mapeamos los valores y hacemos la suma del stock de cada sub coleccion
+                return this._bookDatabase.GetAll().GroupBy(book => book.PublicationDate.Year).Select(authors =>
+                {
+                    var bookPerAuthor = new BookPerRequirement();
+                    bookPerAuthor.Requirement = authors.Key.ToString();
+                    bookPerAuthor.BooksStockNumber = authors.Sum(book => book.Stock);
+
+                    return bookPerAuthor;
+                }).ToList();
+            }
+
+            public IList<BookPerRequirement> GetNumberOfLoanPerUser()
+            {
+
+                //agrupamos los prestamos por id de usuario, y agreagamos la cuenta de los prestamos agrupados
+                return this._bookLoanDatabase.GetAll().GroupBy(loan => loan.User.Id).Select(authors =>
+                {
+                    var bookPerAuthor = new BookPerRequirement();
+                    bookPerAuthor.Requirement = authors.Key.ToString();
+                    bookPerAuthor.BooksStockNumber = authors.Count();
 
                     return bookPerAuthor;
                 }).ToList();
             }
         }
 
-        public class BookPerAuthor
+        //clase para ayudar a represantar la data de la grafica de numero de libros por el requerimiento que nos indiquen
+        private class BookPerRequirement
         {
-            public string Author { get; set; }
+            public string Requirement { get; set; }
             public int BooksStockNumber { get; set; }
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-
+            this._prevForm.Show();
+            this.Hide();
         }
     }
 }

@@ -31,44 +31,51 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Users
 
         private void handleLoanRegistrationEvent(object sender, EventArgs e)
         {
-            // Verificamos que los 2 IDs ingresados en el formulario existan
-            User user = this._usersDatabase.GetById(Int32.Parse(this.textBox2.Text));
-            Book book = this._booksDatabase.GetById(Int32.Parse(this.textBox1.Text));
-            if (!(book != null))
+            try
             {
-                MessageBox.Show($"El usuario con ID: {this.textBox1.Text}, no existe.");
-                return;
+                // Verificamos que los 2 IDs ingresados en el formulario existan
+                User user = this._usersDatabase.GetById(Int32.Parse(this.textBox2.Text));
+                Book book = this._booksDatabase.GetById(Int32.Parse(this.textBox1.Text));
+                if (!(book != null))
+                {
+                    MessageBox.Show($"El usuario con ID: {this.textBox1.Text}, no existe.");
+                    return;
+                }
+                if (!(user != null))
+                {
+                    MessageBox.Show($"El usuario con ID: {this.textBox1.Text}, no existe.");
+                    return;
+                }
+
+                //si ya no hay stock abortamos el proceso, de lo contrario continuamos
+                bool existStock = this.checkIfExistBookStock(book);
+                if (!existStock)
+                {
+                    DialogResult = DialogResult.Abort;
+                    return;
+                }
+
+                bool alreadyHadBookCopy = this.checkIfUserAlreadyHadBookCopy(book, user);
+                if (alreadyHadBookCopy)
+                {
+                    DialogResult = DialogResult.Ignore;
+                    return;
+                }
+
+                this._userProceded = user;
+                BookLoan newBookLoan = new BookLoan();
+                newBookLoan.BookInLoan = book;
+                newBookLoan.User = user;
+                newBookLoan.FinalDateBookLoan = null;
+
+                this._booksLoanDatabase.Insert(newBookLoan);
+                DialogResult = DialogResult.OK;
+
             }
-            if (!(user != null))
+            catch (Exception ex)
             {
-                MessageBox.Show($"El usuario con ID: {this.textBox1.Text}, no existe.");
-                return;
+                MessageBox.Show(ex.Message);
             }
-
-            //si ya no hay stock abortamos el proceso, de lo contrario continuamos
-            bool existStock = this.checkIfExistBookStock(book);
-            if (!existStock)
-            {
-                DialogResult = DialogResult.Abort;
-                return;
-            }
-
-            bool alreadyHadBookCopy = this.checkIfUserAlreadyHadBookCopy(book, user);
-            if (alreadyHadBookCopy)
-            {
-                DialogResult = DialogResult.Ignore;
-                return;
-            }
-
-            this._userProceded = user;
-            BookLoan newBookLoan = new BookLoan();
-            newBookLoan.BookInLoan = book;
-            newBookLoan.User = user;
-            newBookLoan.FinalDateBookLoan = null;
-
-            this._booksLoanDatabase.Insert(newBookLoan);
-            DialogResult = DialogResult.OK;
-
         }
 
         //Verificamos que exista stock, de lo contrario no podra realizar el prestamo, y decrecemos el valor cada que se hace un prestamo y lo actualizamos
