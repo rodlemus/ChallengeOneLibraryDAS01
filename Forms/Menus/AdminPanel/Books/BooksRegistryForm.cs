@@ -44,6 +44,9 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Books
                 {
                     if (radioButtonControl is RadioButton r && r.Checked)
                     {
+                        //Limpiamos resultados anteriores
+                        searchResultsListBox.Items.Clear();
+
                         if (r.Text == "Título")
                         {
                             this.searchByTitle();
@@ -61,8 +64,7 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Books
 
         private void searchByTitle()
         {
-            //Limpiamos resultados anteriores
-            searchResultsListBox.Items.Clear();
+
 
             //Buscamos en base a que el texto ingresado coincida con el inicio del titulo
             this._booksInMemory = _booksDatabase.GetAll().Where((book) => book.Title.StartsWith(this.searchTxtBox.Text)).ToList();
@@ -89,17 +91,23 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Books
 
             try
             {
-                //Limpiamos resultados anteriores
-                searchResultsListBox.Items.Clear();
 
                 //Buscamos en base a que el texto ingresado coincida con el inicio del titulo
                 var bookSearch = _booksDatabase.GetById(Int32.Parse(this.searchTxtBox.Text));
 
-                this._booksInMemory.Add(bookSearch);
+                var auxList = new List<Book>();
+                auxList.Add(bookSearch);
+
+                this._booksInMemory = auxList;
 
 
 
-                this.searchResultsListBox.Items.Add($"ID: {bookSearch.Id} - {bookSearch.Title}");
+                IList<string> titles = this._booksInMemory.Select(book => $"ID: {book.Id} - {book.Title}").ToList();
+
+                foreach (string title in titles)
+                {
+                    searchResultsListBox.Items.Add(title);
+                }
 
                 searchResultsListBox.Visible = true;
                 searchTxtBox.Focus();
