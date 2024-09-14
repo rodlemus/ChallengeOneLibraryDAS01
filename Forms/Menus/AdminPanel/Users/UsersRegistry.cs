@@ -26,7 +26,7 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Users
             this._usersDatabase = database;
             this._bookDatabase = booksDatabase;
             this._bookLoanDatabase = database2;
-            this._bookLoanDgv = new BooksLoanDgv(this.dataGridView1, this._bookLoanDatabase);
+            this._bookLoanDgv = new BooksLoanDgv(this.dataGridView1, this._bookLoanDatabase, this._bookDatabase);
             this._bookLoanDgv.initCols();
 
             //manenejamos el evento cuadno clickeamos una celda desde la clase padre
@@ -34,10 +34,6 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Users
             this._prevForm = prevForm;
         }
 
-        private void handleSelectedStudent(object sender, EventArgs e)
-        {
-
-        }
 
         private void handleUserSearchById(object sender, EventArgs e)
         {
@@ -48,6 +44,8 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Users
                     this._currentUser = this._usersDatabase.GetById(Int32.Parse(this.searchTxtBox.Text));
                     this.label3.Text = this._currentUser.Id.ToString();
                     this.label4.Text = this._currentUser.Name;
+
+                    this._bookLoanDgv.loadLoansByUserId(this._currentUser.Id);
                 }
                 else
                 {
@@ -82,6 +80,11 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Users
                     this.label3.Text = userProceded.Id.ToString();
                     this.label4.Text = userProceded.Name;
                 }
+
+                if (addNewBookLoanDialog.DialogResult == DialogResult.Abort)
+                {
+                    MessageBox.Show("Lo sentimos, no contamos con existencias por el momento, vuelva otro día.");
+                }
             }
 
         }
@@ -94,12 +97,15 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Users
         {
             private DataGridView _loanDgv;
             private IDatabase<BookLoan> _loanDatabase;
+            private IDatabase<Book> _booksDatabase;
+
             //Alamacenamos cada cargamos los prestamos de un usuario para estar listos cuando cancele uno y manipular la lista
             private IList<BookLoan> _booksLoanInMemory;
-            public BooksLoanDgv(DataGridView dgv, IDatabase<BookLoan> database)
+            public BooksLoanDgv(DataGridView dgv, IDatabase<BookLoan> database, IDatabase<Book> booksDatabase)
             {
                 this._loanDgv = dgv;
                 this._loanDatabase = database;
+                this._booksDatabase = booksDatabase;
             }
 
             //inicializamos las columnas
@@ -152,14 +158,27 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Users
                 // Validamos que sea un click proveniente de la columna de Cancelar Prestamo
                 if (e.ColumnIndex == 5)
                 {
-                    var loanId = Int32.Parse(this._loanDgv.Rows[e.RowIndex].Cells[0].Value.ToString());
-                    var loanClicked = this._loanDatabase.GetById(loanId);
+                    try
+                    {
+                        var loanId = Int32.Parse(this._loanDgv.Rows[e.RowIndex].Cells[0].Value.ToString());
+                        var bookId = Int32.Parse(this._loanDgv.Rows[e.RowIndex].Cells[2].Value.ToString());
 
-                    loanClicked.IsPendingLoan = false;
-                    this._loanDatabase.UpdateById(loanClicked, loanId);
-                    this.loadLoansByUserId(loanClicked.User.Id);
+                        var book = this._booksDatabase.GetById(bookId);
+                        var loanClicked = this._loanDatabase.GetById(loanId);
 
-                    MessageBox.Show("Préstamo finalizado con éxito.");
+                        book.Stock = book.Stock + 1;
+                        this._booksDatabase.UpdateById(book, bookId);
+
+                        loanClicked.IsPendingLoan = false;
+                        this._loanDatabase.UpdateById(loanClicked, loanId);
+                        this.loadLoansByUserId(loanClicked.User.Id);
+
+                        MessageBox.Show("Préstamo finalizado con éxito.");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
             }
         }
@@ -178,6 +197,7 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Users
                         this._currentUser = registerUserDialog.getNewStudent();
                         this.label3.Text = this._currentUser.Id.ToString();
                         this.label4.Text = this._currentUser.Name;
+                        this._bookLoanDgv.loadLoansByUserId(this._currentUser.Id);
                     }
 
                 }

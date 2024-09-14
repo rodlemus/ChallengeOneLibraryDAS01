@@ -45,6 +45,15 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Users
                 return;
             }
 
+            //si ya no hay stock abortamos el proceso, de lo contrario continuamos
+            bool existStock = this.checkIfExistBookStock(book);
+            if (!existStock)
+            {
+                DialogResult = DialogResult.Abort;
+                return;
+            }
+
+
             this._userProceded = user;
             BookLoan newBookLoan = new BookLoan();
             newBookLoan.BookInLoan = book;
@@ -54,6 +63,19 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Users
             this._booksLoanDatabase.Insert(newBookLoan);
             DialogResult = DialogResult.OK;
 
+        }
+
+        //Verificamos que exista stock, de lo contrario no podra realizar el prestamo, y decrecemos el valor cada que se hace un prestamo y lo actualizamos
+        // en nuestra base de datos
+        private bool checkIfExistBookStock(Book book)
+        {
+            if (book.Stock <= 0)
+            {
+                return false;
+            }
+            book.Stock = book.Stock - 1;
+            this._booksDatabase.UpdateById(book, book.Id);
+            return true;
         }
 
         private void button2_Click(object sender, EventArgs e)

@@ -14,7 +14,9 @@ namespace ChallengeOneLibraryDAS01
         public AdministrationMenuForm(IDatabase<Book> database, IDatabase<BookLoan> databaseLoan, IDatabase<User> studentDatabase)
         {
             InitializeComponent();
-            SetAppStyle.SetDefaultWindowsStyle(this, panel1);
+            this.BackColor = AppPaletteColors.GetPrincipalBackgroundColor();
+            this.panel1.BackColor = AppPaletteColors.GetSecondaryAccentBackgroundColor();
+
             this._bookDatabase = database;
             this._bookLoanDatabase = databaseLoan;
             this._studentDatabase = studentDatabase;
@@ -24,13 +26,6 @@ namespace ChallengeOneLibraryDAS01
         {
             var booksRegistryMenu = new BooksRegistryForm(this._bookDatabase, this);
             booksRegistryMenu.Show();
-            this.Hide();
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            var rootMenu = new RootMenuForm(this._bookDatabase, this._studentDatabase, this._bookLoanDatabase);
-            rootMenu.Show();
             this.Hide();
         }
 

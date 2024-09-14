@@ -66,16 +66,16 @@
             }
         }
 
-        private short _stock;
-        public short Stock
+        private int _stock;
+        public int Stock
         {
             get { return _stock; }
 
             set
             {
-                if (value <= 0)
+                if (value < 0)
                 {
-                    throw new Exception("error: El stock tiene que ser mayor a Cero.");
+                    throw new Exception("error: El stock tiene que ser Cero un número positivo.");
                 }
                 _stock = value;
             }

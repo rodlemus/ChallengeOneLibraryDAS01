@@ -32,7 +32,6 @@
             button2 = new Button();
             button3 = new Button();
             button4 = new Button();
-            button5 = new Button();
             panel1 = new Panel();
             label1 = new Label();
             panel1.SuspendLayout();
@@ -80,17 +79,6 @@
             button4.Text = "Reportes";
             button4.UseVisualStyleBackColor = true;
             // 
-            // button5
-            // 
-            button5.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            button5.Location = new Point(210, 355);
-            button5.Name = "button5";
-            button5.Size = new Size(143, 29);
-            button5.TabIndex = 4;
-            button5.Text = "Regresar al menú";
-            button5.UseVisualStyleBackColor = true;
-            button5.Click += button5_Click;
-            // 
             // panel1
             // 
             panel1.Anchor = AnchorStyles.None;
@@ -99,7 +87,7 @@
             panel1.Controls.Add(button1);
             panel1.Controls.Add(button2);
             panel1.Controls.Add(button3);
-            panel1.Location = new Point(28, 16);
+            panel1.Location = new Point(21, 13);
             panel1.Name = "panel1";
             panel1.Size = new Size(325, 333);
             panel1.TabIndex = 5;
@@ -119,11 +107,10 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(384, 396);
+            ClientSize = new Size(366, 358);
             Controls.Add(panel1);
-            Controls.Add(button5);
             MaximizeBox = false;
-            MinimumSize = new Size(402, 443);
+            MinimumSize = new Size(100, 100);
             Name = "AdministrationMenuForm";
             StartPosition = FormStartPosition.CenterScreen;
             panel1.ResumeLayout(false);
@@ -137,7 +124,6 @@
         private Button button2;
         private Button button3;
         private Button button4;
-        private Button button5;
         private Panel panel1;
         private Label label1;
     }

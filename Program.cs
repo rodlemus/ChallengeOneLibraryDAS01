@@ -23,7 +23,7 @@ namespace ChallengeOneLibraryDAS01
             book.Id = 1000;
             book.Title = "el principito";
             book.Author = "jose jose";
-            book.Stock = 20;
+            book.Stock = 3;
             book.PublicationDate = DateTime.Now;
             book.PortraitUrl = "www.josejose.img";
             book.Editorial = "bacacho";
@@ -33,7 +33,7 @@ namespace ChallengeOneLibraryDAS01
 
             userdb.Insert(user);
             bookdb.Insert(book);
-            Application.Run(new RootMenuForm(bookdb, userdb, new BiblioRepository<BookLoan>()));
+            Application.Run(new AdministrationMenuForm(bookdb, new BiblioRepository<BookLoan>(), userdb));
         }
     }
 }
