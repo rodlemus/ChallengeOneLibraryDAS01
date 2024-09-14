@@ -38,22 +38,32 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.Reports
             string booksPerAuthorSeries = "Autores";
 
             var booksPerAuthor = this._graphQueryService.GetBooksPerAuthor();
+
+            //este clear siempre se hace porque trae una serie por defecto la grafica
             this.chart1.Series.Clear();
+
+            //título de la grafica
             this.chart1.Titles.Add("Número de libros por Autor");
+
+            // nombre de la serie
             this.chart1.Series.Add(booksPerAuthorSeries);
 
-            int count = 0;
-
-            foreach (var book in booksPerAuthor)
+            //Usamos la funcion select para acceder al index en la lista y no tener que declara una variable solo para contarla
+            foreach (var item in booksPerAuthor.Select((value, index) => new { value, index }))
             {
-                //DataPoint representa a cada barra de la grafica, le asignamos los valor como el indice y el Valor de Y
+                var book = item.value;
+                var index = item.index;
+
+                //DataPoint representa a cada barra de la grafica, le asignamos los valores como el indice y el Valor de Y
                 var charDataPoint = new DataPoint();
-                charDataPoint.SetValueXY(count + 1, book.BooksStockNumber);
+
+                charDataPoint.SetValueXY(index, book.BooksStockNumber);
+
+                //este es el texto que aparece debajo de cada barra
                 charDataPoint.AxisLabel = book.Requirement;
 
                 //luego agregamos ese punto a la serie correspondiente
                 this.chart1.Series[booksPerAuthorSeries].Points.Add(charDataPoint);
-                count += 1;
             }
         }
 
