@@ -193,6 +193,10 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.Reports
         }
 
         //clase para ayudar a represantar la data de la grafica de numero de libros por el requerimiento que nos indiquen
+        //El requirement puede ser el id de un usuario, el nombre de un libro, etc
+        //ya que para graficar solo necesitamos esta estructura
+        // {string: que sera el texto abajo de la barra, int: un entero que sera el valor de Y de la barra}
+        // por eso se crea la clase BookPerRequirement, asi retornamos esos elementos en una lista y con eso alimentamos las graficas
         private class BookPerRequirement
         {
             public string Requirement { get; set; }
