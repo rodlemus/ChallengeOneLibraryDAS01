@@ -1,8 +1,8 @@
 ﻿namespace ChallengeOneLibraryDAS01.database.Models
 {
-    public class Student : DatabaseElement
+    public class User : DatabaseElement
     {
-        public Student() : base()
+        public User() : base()
         {
         }
 

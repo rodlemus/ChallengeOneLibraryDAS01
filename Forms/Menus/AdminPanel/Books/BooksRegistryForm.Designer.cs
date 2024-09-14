@@ -30,12 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BooksRegistryForm));
             groupBox1 = new GroupBox();
-            button9 = new Button();
+            panel1 = new Panel();
             button8 = new Button();
+            button4 = new Button();
+            button5 = new Button();
             button7 = new Button();
             button6 = new Button();
-            button5 = new Button();
-            button4 = new Button();
+            button9 = new Button();
             button3 = new Button();
             label7 = new Label();
             label6 = new Label();
@@ -56,17 +57,19 @@
             rdBtnId = new RadioButton();
             button2 = new Button();
             searchTxtBox = new TextBox();
-            panel1 = new Panel();
+            button10 = new Button();
+            label8 = new Label();
             groupBox1.SuspendLayout();
+            panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
-            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox1
             // 
             groupBox1.BackColor = Color.White;
+            groupBox1.Controls.Add(label8);
             groupBox1.Controls.Add(panel1);
             groupBox1.Controls.Add(button9);
             groupBox1.Controls.Add(button3);
@@ -88,16 +91,18 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Detalles";
             // 
-            // button9
+            // panel1
             // 
-            button9.Image = (Image)resources.GetObject("button9.Image");
-            button9.Location = new Point(517, 33);
-            button9.Name = "button9";
-            button9.Size = new Size(37, 28);
-            button9.TabIndex = 21;
-            button9.UseVisualStyleBackColor = true;
-            button9.Visible = false;
-            button9.Click += handleUpdatePortraitUrlEvent;
+            panel1.Controls.Add(button8);
+            panel1.Controls.Add(button4);
+            panel1.Controls.Add(button5);
+            panel1.Controls.Add(button7);
+            panel1.Controls.Add(button6);
+            panel1.Location = new Point(6, 38);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(44, 183);
+            panel1.TabIndex = 22;
+            panel1.Visible = false;
             // 
             // button8
             // 
@@ -108,6 +113,26 @@
             button8.TabIndex = 20;
             button8.UseVisualStyleBackColor = true;
             button8.Click += handleUpdateStockEvent;
+            // 
+            // button4
+            // 
+            button4.Image = (Image)resources.GetObject("button4.Image");
+            button4.Location = new Point(5, 10);
+            button4.Name = "button4";
+            button4.Size = new Size(37, 28);
+            button4.TabIndex = 16;
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += handleUpdateTitleEvent;
+            // 
+            // button5
+            // 
+            button5.Image = (Image)resources.GetObject("button5.Image");
+            button5.Location = new Point(2, 46);
+            button5.Name = "button5";
+            button5.Size = new Size(37, 28);
+            button5.TabIndex = 17;
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += handleUpdateAuthorEvent;
             // 
             // button7
             // 
@@ -129,25 +154,16 @@
             button6.UseVisualStyleBackColor = true;
             button6.Click += handleUpdateEditorialEvent;
             // 
-            // button5
+            // button9
             // 
-            button5.Image = (Image)resources.GetObject("button5.Image");
-            button5.Location = new Point(2, 46);
-            button5.Name = "button5";
-            button5.Size = new Size(37, 28);
-            button5.TabIndex = 17;
-            button5.UseVisualStyleBackColor = true;
-            button5.Click += handleUpdateAuthorEvent;
-            // 
-            // button4
-            // 
-            button4.Image = (Image)resources.GetObject("button4.Image");
-            button4.Location = new Point(5, 10);
-            button4.Name = "button4";
-            button4.Size = new Size(37, 28);
-            button4.TabIndex = 16;
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += handleUpdateTitleEvent;
+            button9.Image = (Image)resources.GetObject("button9.Image");
+            button9.Location = new Point(361, 79);
+            button9.Name = "button9";
+            button9.Size = new Size(37, 28);
+            button9.TabIndex = 21;
+            button9.UseVisualStyleBackColor = true;
+            button9.Visible = false;
+            button9.Click += handleUpdatePortraitUrlEvent;
             // 
             // button3
             // 
@@ -371,24 +387,31 @@
             searchTxtBox.TabIndex = 0;
             searchTxtBox.Enter += handleEnterSearchFocus;
             // 
-            // panel1
+            // button10
             // 
-            panel1.Controls.Add(button8);
-            panel1.Controls.Add(button4);
-            panel1.Controls.Add(button5);
-            panel1.Controls.Add(button7);
-            panel1.Controls.Add(button6);
-            panel1.Location = new Point(6, 38);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(44, 183);
-            panel1.TabIndex = 22;
-            panel1.Visible = false;
+            button10.Location = new Point(511, 539);
+            button10.Name = "button10";
+            button10.Size = new Size(94, 29);
+            button10.TabIndex = 5;
+            button10.Text = "Regresar";
+            button10.UseVisualStyleBackColor = true;
+            button10.Click += button10_Click;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(404, 44);
+            label8.Name = "label8";
+            label8.Size = new Size(29, 20);
+            label8.TabIndex = 23;
+            label8.Text = "     ";
             // 
             // BooksRegistryForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(617, 580);
+            Controls.Add(button10);
             Controls.Add(button1);
             Controls.Add(groupBox1);
             Controls.Add(groupBox2);
@@ -398,12 +421,12 @@
             Text = "BooksRegistryForm";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
-            panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -436,5 +459,7 @@
         private Button button5;
         private Button button9;
         private Panel panel1;
+        private Button button10;
+        private Label label8;
     }
 }

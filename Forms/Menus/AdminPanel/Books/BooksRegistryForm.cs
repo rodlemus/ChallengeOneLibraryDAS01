@@ -9,17 +9,20 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Books
     public partial class BooksRegistryForm : Form
     {
         private IDatabase<Book> _booksDatabase;
+        private Form _prevForm;
 
         // guardamos lo resultados de la busqueda, nos serviran para buscar por el index el libro clickeado
         private IList<Book> _booksInMemory = new List<Book>();
         private Book? _selectedBookFromListBox;
-        public BooksRegistryForm(IDatabase<Book> database)
+        public BooksRegistryForm(IDatabase<Book> database, Form prevForm)
         {
             InitializeComponent();
             this.BackColor = AppPaletteColors.GetPrincipalBackgroundColor();
             this.button2.BackColor = AppPaletteColors.GetPrincipalBackgroundColor();
             this._booksDatabase = database;
 
+            //Formulario anterior
+            this._prevForm = prevForm;
             // ponemos como busqueda default la que es por titulo
             this.rdBtnTitle.Checked = true;
 
@@ -116,6 +119,7 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Books
                 label6.Text = this._selectedBookFromListBox.PublicationDate.ToShortDateString();
                 label7.Text = this._selectedBookFromListBox.Stock.ToString();
                 pictureBox1.ImageLocation = this._selectedBookFromListBox.PortraitUrl;
+                label8.Text = $"ID: {this._selectedBookFromListBox.Id}";
 
                 //Elementos para editar y elimar libro
                 panel1.Visible = true;
@@ -197,6 +201,7 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Books
                             label5.Text = "";
                             label6.Text = "";
                             label7.Text = "";
+                            label8.Text = "";
                             pictureBox1.ImageLocation = "";
 
                             this._selectedBookFromListBox = null;
@@ -220,6 +225,13 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Books
             {
                 MessageBox.Show("Ocurrio un error, intentelo más tarde.");
             }
+
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            this._prevForm.ShowDialog();
 
         }
     }

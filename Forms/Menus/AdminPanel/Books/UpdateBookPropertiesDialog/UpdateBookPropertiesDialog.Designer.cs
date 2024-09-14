@@ -108,6 +108,7 @@
             ClientSize = new Size(419, 253);
             Controls.Add(groupBox1);
             Name = "UpdateBookPropertiesDialog";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "UpdateBookPropertiesDialog";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
