@@ -31,11 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UsersRegistry));
             button1 = new Button();
             panel1 = new Panel();
-            button4 = new Button();
             button5 = new Button();
             label4 = new Label();
             label3 = new Label();
-            pictureBox1 = new PictureBox();
             bookAuthorLabel = new Label();
             bookTitleLabel = new Label();
             groupBox2 = new GroupBox();
@@ -47,7 +45,6 @@
             button3 = new Button();
             button6 = new Button();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             groupBox1.SuspendLayout();
@@ -60,7 +57,7 @@
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             button1.ForeColor = Color.Snow;
-            button1.Location = new Point(12, 598);
+            button1.Location = new Point(12, 555);
             button1.Margin = new Padding(0);
             button1.Name = "button1";
             button1.Size = new Size(198, 39);
@@ -71,27 +68,17 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(button4);
             panel1.Controls.Add(button5);
-            panel1.Location = new Point(21, 43);
+            panel1.Location = new Point(30, 56);
             panel1.Name = "panel1";
-            panel1.Size = new Size(44, 86);
+            panel1.Size = new Size(44, 51);
             panel1.TabIndex = 22;
             panel1.Visible = false;
-            // 
-            // button4
-            // 
-            button4.Image = (Image)resources.GetObject("button4.Image");
-            button4.Location = new Point(5, 10);
-            button4.Name = "button4";
-            button4.Size = new Size(37, 28);
-            button4.TabIndex = 16;
-            button4.UseVisualStyleBackColor = true;
             // 
             // button5
             // 
             button5.Image = (Image)resources.GetObject("button5.Image");
-            button5.Location = new Point(2, 46);
+            button5.Location = new Point(4, 11);
             button5.Name = "button5";
             button5.Size = new Size(37, 28);
             button5.TabIndex = 17;
@@ -100,7 +87,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(142, 94);
+            label4.Location = new Point(142, 73);
             label4.Name = "label4";
             label4.Size = new Size(33, 20);
             label4.TabIndex = 12;
@@ -110,27 +97,17 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            label3.Location = new Point(140, 54);
+            label3.Location = new Point(140, 33);
             label3.Name = "label3";
             label3.Size = new Size(33, 20);
             label3.TabIndex = 11;
             label3.Text = "      ";
             // 
-            // pictureBox1
-            // 
-            pictureBox1.BackColor = SystemColors.ControlDark;
-            pictureBox1.Location = new Point(540, 31);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(102, 104);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 6;
-            pictureBox1.TabStop = false;
-            // 
             // bookAuthorLabel
             // 
             bookAuthorLabel.AutoSize = true;
             bookAuthorLabel.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            bookAuthorLabel.Location = new Point(71, 90);
+            bookAuthorLabel.Location = new Point(71, 69);
             bookAuthorLabel.Name = "bookAuthorLabel";
             bookAuthorLabel.Size = new Size(78, 22);
             bookAuthorLabel.TabIndex = 7;
@@ -140,7 +117,7 @@
             // 
             bookTitleLabel.AutoSize = true;
             bookTitleLabel.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            bookTitleLabel.Location = new Point(71, 52);
+            bookTitleLabel.Location = new Point(71, 31);
             bookTitleLabel.Name = "bookTitleLabel";
             bookTitleLabel.Size = new Size(67, 22);
             bookTitleLabel.TabIndex = 6;
@@ -201,12 +178,11 @@
             groupBox1.Controls.Add(panel1);
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(pictureBox1);
             groupBox1.Controls.Add(bookAuthorLabel);
             groupBox1.Controls.Add(bookTitleLabel);
             groupBox1.Location = new Point(98, 121);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(664, 167);
+            groupBox1.Size = new Size(664, 120);
             groupBox1.TabIndex = 6;
             groupBox1.TabStop = false;
             groupBox1.Text = "Detalles";
@@ -215,7 +191,7 @@
             // 
             groupBox3.BackColor = Color.White;
             groupBox3.Controls.Add(dataGridView1);
-            groupBox3.Location = new Point(12, 307);
+            groupBox3.Location = new Point(12, 264);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(832, 267);
             groupBox3.TabIndex = 9;
@@ -224,7 +200,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(754, 614);
+            button3.Location = new Point(754, 571);
             button3.Name = "button3";
             button3.Size = new Size(94, 29);
             button3.TabIndex = 4;
@@ -238,7 +214,7 @@
             button6.FlatStyle = FlatStyle.Flat;
             button6.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             button6.ForeColor = Color.Snow;
-            button6.Location = new Point(239, 598);
+            button6.Location = new Point(239, 555);
             button6.Margin = new Padding(0);
             button6.Name = "button6";
             button6.Size = new Size(198, 39);
@@ -251,7 +227,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(860, 655);
+            ClientSize = new Size(860, 609);
             Controls.Add(button6);
             Controls.Add(button3);
             Controls.Add(groupBox3);
@@ -262,7 +238,6 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UsersRegistry";
             panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
@@ -276,11 +251,9 @@
 
         private Button button1;
         private Panel panel1;
-        private Button button4;
         private Button button5;
         private Label label4;
         private Label label3;
-        private PictureBox pictureBox1;
         private Label bookAuthorLabel;
         private Label bookTitleLabel;
         private GroupBox groupBox2;

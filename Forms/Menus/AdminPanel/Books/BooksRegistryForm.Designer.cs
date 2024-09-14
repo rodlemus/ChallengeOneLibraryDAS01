@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BooksRegistryForm));
             groupBox1 = new GroupBox();
+            label8 = new Label();
             panel1 = new Panel();
             button8 = new Button();
             button4 = new Button();
@@ -58,7 +59,6 @@
             button2 = new Button();
             searchTxtBox = new TextBox();
             button10 = new Button();
-            label8 = new Label();
             groupBox1.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -90,6 +90,15 @@
             groupBox1.TabIndex = 3;
             groupBox1.TabStop = false;
             groupBox1.Text = "Detalles";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(404, 44);
+            label8.Name = "label8";
+            label8.Size = new Size(29, 20);
+            label8.TabIndex = 23;
+            label8.Text = "     ";
             // 
             // panel1
             // 
@@ -396,15 +405,6 @@
             button10.Text = "Regresar";
             button10.UseVisualStyleBackColor = true;
             button10.Click += button10_Click;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(404, 44);
-            label8.Name = "label8";
-            label8.Size = new Size(29, 20);
-            label8.TabIndex = 23;
-            label8.Text = "     ";
             // 
             // BooksRegistryForm
             // 

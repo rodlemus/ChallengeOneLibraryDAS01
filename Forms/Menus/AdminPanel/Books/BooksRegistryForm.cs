@@ -48,6 +48,11 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Books
                         {
                             this.searchByTitle();
                         }
+
+                        if (r.Text == "ID")
+                        {
+                            this.searchById();
+                        }
                     }
                 }
             }
@@ -79,10 +84,34 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Books
             searchTxtBox.Focus();
         }
 
-        private void searchByID()
+        private void searchById()
         {
-            MessageBox.Show("No hay resultados");
+
+            try
+            {
+                //Limpiamos resultados anteriores
+                searchResultsListBox.Items.Clear();
+
+                //Buscamos en base a que el texto ingresado coincida con el inicio del titulo
+                var bookSearch = _booksDatabase.GetById(Int32.Parse(this.searchTxtBox.Text));
+
+                this._booksInMemory.Add(bookSearch);
+
+
+
+                this.searchResultsListBox.Items.Add($"ID: {bookSearch.Id} - {bookSearch.Title}");
+
+                searchResultsListBox.Visible = true;
+                searchTxtBox.Focus();
+            }
+            catch (Exception ex)
+            {
+                searchResultsListBox.Visible = false;
+                MessageBox.Show(ex.Message);
+            }
         }
+
+
 
         private void button1_Click(object sender, EventArgs e)
         {
