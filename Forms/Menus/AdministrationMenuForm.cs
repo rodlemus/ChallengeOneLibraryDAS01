@@ -35,6 +35,7 @@ namespace ChallengeOneLibraryDAS01
             var userRegistry = new UsersRegistry(this._bookDatabase, this._usersDatabase, this._bookLoanDatabase, this);
             userRegistry.Show();
             this.Hide();
+
         }
 
         private void button4_Click(object sender, EventArgs e)

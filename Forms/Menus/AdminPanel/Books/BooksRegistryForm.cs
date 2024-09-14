@@ -267,9 +267,8 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Books
 
         private void button10_Click(object sender, EventArgs e)
         {
+            this._prevForm.Show();
             this.Hide();
-            this._prevForm.ShowDialog();
-
         }
     }
 }

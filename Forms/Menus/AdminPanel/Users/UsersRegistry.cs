@@ -26,12 +26,13 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Users
             this._usersDatabase = database;
             this._bookDatabase = booksDatabase;
             this._bookLoanDatabase = database2;
+            this._prevForm = prevForm;
+
             this._bookLoanDgv = new BooksLoanDgv(this.dataGridView1, this._bookLoanDatabase, this._bookDatabase);
             this._bookLoanDgv.initCols();
 
             //manenejamos el evento cuadno clickeamos una celda desde la clase padre
             this.dataGridView1.CellContentClick += this._bookLoanDgv.HandleFinishLoanCellClick;
-            this._prevForm = prevForm;
         }
 
 
@@ -60,8 +61,9 @@ namespace ChallengeOneLibraryDAS01.Forms.Menus.AdminPanel.Users
 
         private void button3_Click(object sender, EventArgs e)
         {
-            this.Hide();
             this._prevForm.Show();
+            this.Hide();
+
         }
 
         private void button1_Click(object sender, EventArgs e)
