@@ -4,7 +4,7 @@ using ChallengeOneLibraryDAS01.database.NewFolder;
 namespace ChallengeOneLibraryDAS01.database
 {
 
-    public class BiblioRepository<T> : IDatabase<T> where T : DatabaseElement
+    public class AbstractRepository<T> : IDatabase<T> where T : DatabaseElement
     {
 
         private IList<T> _databaseMemory = new List<T>();

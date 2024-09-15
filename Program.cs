@@ -14,8 +14,8 @@ namespace ChallengeOneLibraryDAS01
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            var userdb = new BiblioRepository<User>();
-            var bookdb = new BiblioRepository<Book>();
+            var userdb = new AbstractRepository<User>();
+            var bookdb = new AbstractRepository<Book>();
 
             var book = new Book();
             var book2 = new Book();
@@ -70,7 +70,7 @@ namespace ChallengeOneLibraryDAS01
             bookdb.Insert(book2);
             bookdb.Insert(book3);
             bookdb.Insert(book4);
-            Application.Run(new AdministrationMenuForm(bookdb, new BiblioRepository<BookLoan>(), userdb));
+            Application.Run(new AdministrationMenuForm(bookdb, new AbstractRepository<BookLoan>(), userdb));
         }
     }
 }
